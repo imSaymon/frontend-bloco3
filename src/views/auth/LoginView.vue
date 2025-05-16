@@ -26,7 +26,7 @@
 
         <button
           class="px-4 py-2 rounded border border-green-900 bg-green-600 hover:bg-green-900 text-white font-bold transition duration-300 ease-in-out"
-          v-on:click.prevent="login"
+          v-on:click.prevent="authStore.login(credentials)"
         >
           Acessar
         </button>
@@ -36,8 +36,8 @@
 </template>
 
 <script>
-import httpClient from '../services/HttpClient'
-import Storage from '../services/Storage'
+import { mapStores } from 'pinia';
+import { useAuth } from '@/stores/auth';
 
 export default {
   data() {
@@ -46,18 +46,10 @@ export default {
         email: null,
         password: null,
       },
-    }
+    };
   },
-  methods: {
-    login() {
-      httpClient
-        .post('/login', this.credentials).then((response) => {
-          Storage.set('token', response.data.data.token);
-
-          //this.$router.push({name: 'admin.products'})
-          location.href = '/admin/products';
-        })
-    },
+  computed: {
+    ...mapStores(useAuth),
   },
-}
+};
 </script>

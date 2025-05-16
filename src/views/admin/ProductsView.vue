@@ -4,8 +4,8 @@
 </template>
 
 <script>
-import httpClient from '../services/HttpClient'
-import storage from '../services/Storage'
+import httpClient from '../services/http-client'
+import storage from '../services/storage'
 
 export default {
   data() {
@@ -21,7 +21,7 @@ export default {
   methods: {
     logout() {
       httpClient.post('/logout').then((response) => {
-        storage.remove('token')
+        storage.remove('auth')
         location.href = '/auth/login'
       })
     },
