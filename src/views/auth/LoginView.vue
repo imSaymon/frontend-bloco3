@@ -1,8 +1,11 @@
 <template>
-  <div class="w-full h-full">
-    <div class="max-w-3x1 rounded border border-gray-300 p-4">
+  <div class="w-full h-full absolute flex items-center justify-center">
+    <div class="max-w-3x1 rounded border border-gray-300 p-4 shadow">
+      <div class="w-96 text-center">
+        <h2 class="text-x1 font-bold mb-6">Acessar Painel Loja</h2>
+      </div>
       <form action="">
-        <div class="w-full mb-6">
+        <div class="w-96 mb-6">
           <label for="email" class="block mb-2">E-mail</label>
           <input
             type="email"
@@ -13,7 +16,7 @@
           />
         </div>
 
-        <div class="w-full mb-6">
+        <div class="w-96 mb-6">
           <label for="password" class="block mb-2">Senha</label>
           <input
             type="password"

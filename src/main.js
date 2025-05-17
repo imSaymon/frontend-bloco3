@@ -4,11 +4,11 @@ import httpClient from './views/services/http-client';
 import App from './App.vue';
 import router from './router';
 import piniaPluginPersistedstate from "pinia-plugin-persistedstate";
-import Storage from './views/services/Storage';
+import storage from '@/views/services/storage';
 import './assets/main.css';
 
 httpClient.setInterceptor();
-const auth = JSON.parse(Storage.get("auth"));
+const auth = JSON.parse(storage.get("auth"));
 
 if(auth) {
     httpClient.setAuthToken(auth.token);
