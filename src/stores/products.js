@@ -9,9 +9,10 @@ export const useProducts = defineStore("products", {
     },
   },
   actions: {
-    getAllProducts() {
+    getAllProducts(page) {
+      let endpoint = page ? `/products?page=${page}` : '/products'
       httpClient
-        .get('/products')
+        .get(endpoint)
         .then((response) => (this.products = response.data));
     },
     getProductById(id, callback) {

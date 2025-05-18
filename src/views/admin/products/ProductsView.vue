@@ -69,6 +69,20 @@
       </tbody>
     </table>
   </div>
+  <div id="pagination" class="flex justify-end py-4">
+    <a
+      @click.prevent="getProductsByPage(link.url)"
+      :href="link.url"
+      v-for="link in productsStore.products.meta.links"
+      v-show="link.url"
+      v-html="link.label"
+      :key="link.label"
+      class="p-2 rounded border border-gray-300 ml-4 hover:border-gray-600 hover:bg-gray-900 hover:text-white transition ease-in-out duration-300"
+      :class="{
+        'border-gray-600 bg-gray-900 text-white': link.active
+      }"
+    ></a>
+  </div>
 </template>
 
 <script>
@@ -82,7 +96,13 @@ export default {
   //   }
   // },
   created() {
-    this.productsStore.getAllProducts()
+    let page = location.search.match(/page=(\d+)/);
+
+    if(!page) {
+      this.productsStore.getAllProducts()
+    } else {
+      this.productsStore.getAllProducts(page[1])
+    }
   },
   computed: {
     ...mapStores(useProducts),
@@ -91,6 +111,14 @@ export default {
   //   httpClient.get('/products').then((response) => next((vm) => (vm.products = response.data)))
   // },
   methods: {
+    getProductsByPage(url) {
+      let pageParam = url.match(/page=(\d+)/)[1];
+      this.pushStateUrl(pageParam)
+      this.productsStore.getAllProducts(pageParam)
+    },
+    pushStateUrl(page) {
+      history.pushState(null, null, `?page=${page}`)
+    }
     // removeProduct(product) {
     //   alert(product);
     // }
