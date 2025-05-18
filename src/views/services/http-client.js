@@ -1,5 +1,5 @@
 import axios from 'axios'
-import storage from './storage'
+import storage from '@/views/services/storage'
 
 let token = storage.get("token")
 
@@ -15,6 +15,12 @@ const httpClient = {
   },
   post(endpoint, data) {
     return httpFactory.post(endpoint, data)
+  },
+  put(endpoint, data) {
+    return httpFactory.put(endpoint, data)
+  },
+  delete(endpoint) {
+    return httpFactory.delete(endpoint)
   },
   setAuthToken(token) {
     httpFactory.defaults.headers.common['Authorization'] = `Bearer ${token}`
