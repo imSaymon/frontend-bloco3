@@ -1,13 +1,16 @@
 <template>
-  <div id="header-content" class="flex justify-between items-center w-full py-4 border-b border-gray-300">
+  <div
+    id="header-content"
+    class="flex justify-between items-center w-full py-4 border-b border-gray-300"
+  >
     <h2 class="text-xl font-bold">Editar Produto</h2>
 
     <router-link
-        :to="{ name: 'admin.products.photos', params: { id: id } }"
-        class="px-4 py-2 border border-green-700 rounded bg-green-700 text-white font-bold hover:bg-green-400 transition ease-in-out duration-300"
-      >
+      :to="{ name: 'admin.products.photos', params: { id: id } }"
+      class="px-4 py-2 border border-green-700 rounded bg-green-700 text-white font-bold hover:bg-green-400 transition ease-in-out duration-300"
+    >
       Gerenciar Foto(s) Produto
-      </router-link>
+    </router-link>
   </div>
   <div class="block w-full border-b pb-10 border-gray-300 py-10">
     <form action="">
@@ -63,8 +66,7 @@ export default {
     // if (this.productsStore.product) {
     // this.product = this.productsStore.product.data;
     // }
-    this.productsStore.getProductById(this.id, 
-    (response) => (this.product = response.data.data))
+    this.productsStore.getProductById(this.id, (response) => (this.product = response.data.data))
     // this.product = this.productsStore.product.data;
   },
   data() {

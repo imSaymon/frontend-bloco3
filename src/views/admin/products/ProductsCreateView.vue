@@ -61,7 +61,7 @@ export default {
     }
   },
   computed: {
-    ...mapStores(useProducts)
+    ...mapStores(useProducts),
   },
 }
 </script>

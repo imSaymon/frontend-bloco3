@@ -1,41 +1,31 @@
-import { defineStore } from "pinia";
-import httpClient from "@/views/services/http-client";
+import { defineStore } from 'pinia'
+import httpClient from '@/views/services/http-client'
 
-export const useProducts = defineStore("products", {
+export const useProducts = defineStore('products', {
   state: () => ({ products: null, product: null }),
   getters: {
     getProducts(state) {
-      return state.products;
+      return state.products
     },
   },
   actions: {
     getAllProducts(page) {
       let endpoint = page ? `/products?page=${page}` : '/products'
-      httpClient
-        .get(endpoint)
-        .then((response) => (this.products = response.data));
+      httpClient.get(endpoint).then((response) => (this.products = response.data))
     },
     getProductById(id, callback) {
-      httpClient
-        .get(`/products/${id}`)
-        .then(callback);
+      httpClient.get(`/products/${id}`).then(callback)
     },
     createProduct(product) {
-      httpClient
-        .post("/products", product)
-        .then((response) => console.log(response))
-    } ,
+      httpClient.post('/products', product).then((response) => console.log(response))
+    },
     updateProduct(id, product) {
       console.log(id, 'CE TA CHEGANO AQUI???')
-      httpClient
-        .put(`/products/${id}`, product)
-        .then((response) => (this.product = response.data))
+      httpClient.put(`/products/${id}`, product).then((response) => (this.product = response.data))
     },
     deleteProduct(id) {
-      httpClient
-        .delete(`/products/${id}`)
-        .then((response) => location.reload())
+      httpClient.delete(`/products/${id}`).then((response) => location.reload())
     },
   },
   persist: true,
-});
+})

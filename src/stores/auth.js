@@ -8,7 +8,7 @@ export const useAuth = defineStore('auth', {
   actions: {
     login(credentials) {
       httpClient.post('/login', credentials).then((response) => {
-        const token = response.data.data.token;
+        const token = response.data.data.token
         httpClient.setAuthToken(token)
         this.token = token
 
@@ -17,4 +17,4 @@ export const useAuth = defineStore('auth', {
     },
   },
   persist: true,
-});
+})

@@ -39,8 +39,8 @@
 </template>
 
 <script>
-import { mapStores } from 'pinia';
-import { useAuth } from '@/stores/auth';
+import { mapStores } from 'pinia'
+import { useAuth } from '@/stores/auth'
 
 export default {
   data() {
@@ -49,10 +49,10 @@ export default {
         email: null,
         password: null,
       },
-    };
+    }
   },
   computed: {
     ...mapStores(useAuth),
   },
-};
+}
 </script>

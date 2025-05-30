@@ -22,9 +22,7 @@
           <td class="px-6 py-4">
             <div class="flex gap-4">
               <router-link
-                  :to="{ name: 'admin.products.edit', 
-                  params: { id: product.id }, 
-                }"
+                :to="{ name: 'admin.products.edit', params: { id: product.id } }"
                 class="px-4 py-2 border border-blue-700 rounded bg-blue-700 text-white font-bold hover:bg-blue-400 transition ease-in-out duration-300"
               >
                 <svg
@@ -79,7 +77,7 @@
       :key="link.label"
       class="p-2 rounded border border-gray-300 ml-4 hover:border-gray-600 hover:bg-gray-900 hover:text-white transition ease-in-out duration-300"
       :class="{
-        'border-gray-600 bg-gray-900 text-white': link.active
+        'border-gray-600 bg-gray-900 text-white': link.active,
       }"
     ></a>
   </div>
@@ -96,9 +94,9 @@ export default {
   //   }
   // },
   created() {
-    let page = location.search.match(/page=(\d+)/);
+    let page = location.search.match(/page=(\d+)/)
 
-    if(!page) {
+    if (!page) {
       this.productsStore.getAllProducts()
     } else {
       this.productsStore.getAllProducts(page[1])
@@ -112,13 +110,13 @@ export default {
   // },
   methods: {
     getProductsByPage(url) {
-      let pageParam = url.match(/page=(\d+)/)[1];
+      let pageParam = url.match(/page=(\d+)/)[1]
       this.pushStateUrl(pageParam)
       this.productsStore.getAllProducts(pageParam)
     },
     pushStateUrl(page) {
       history.pushState(null, null, `?page=${page}`)
-    }
+    },
     // removeProduct(product) {
     //   alert(product);
     // }
